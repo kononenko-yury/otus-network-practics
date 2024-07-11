@@ -16,3 +16,5 @@
 
 #### 3. Конфигурация коммутаторов приведена в файлах [config_switch_s1](https://github.com/kononenko-yury/otus-network-practics/blob/main/Labs1/config_switch_s1) и [config_switch_s2](https://github.com/kononenko-yury/otus-network-practics/blob/main/Labs1/config_switch_s2)
 
+#### 4. Конфигурация маршрутизатора приведена в файле [config_router_r1](https://github.com/kononenko-yury/otus-network-practics/blob/main/Labs1/config_router_r1)
+
