@@ -1,2 +1,2 @@
 ### Репозиторий выполненых лабораторных работ курса "Сетевой инженер" в компании OTUS.
-	##### [_1. Выполнение 1-ой лабораторной работы_](https://github.com/kononenko-yury/otus-network-practics/blob/main/Lesson1/Homework1)
+##### 	[1. Выполнение 1-ой лабораторной работы](https://github.com/kononenko-yury/otus-network-practics/blob/main/Lesson1/Homework1)
