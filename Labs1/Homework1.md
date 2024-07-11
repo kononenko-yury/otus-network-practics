@@ -14,4 +14,5 @@
         switchport trunk allowed vlan 3-4,8
         switchport mode trunk
 
-#### 3. Конфигурация коммутаторов приведена в файлах [config_switch-s1](https://github.com/kononenko-yury/otus-network-practics/blob/main/Lesson1/config_switch-s1) и [config_switch-s2](https://github.com/kononenko-yury/otus-network-practics/blob/main/Lesson1/config_switch-s2)
+#### 3. Конфигурация коммутаторов приведена в файлах [config_switch-s1](https://github.com/kononenko-yury/otus-network-practics/blob/main/Labs1/config_switch-s1) и [config_switch-s2](https://github.com/kononenko-yury/otus-network-practics/blob/main/Labs1/config_switch-s2)
+
