@@ -1,0 +1,82 @@
+hostname SW29
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+no ip routing
+!
+!
+!
+no ip domain-lookup
+no ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/1
+ switchport access vlan 20
+ switchport mode access
+!
+interface Ethernet0/2
+ switchport trunk allowed vlan 10,20,44
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/3
+!
+interface Vlan44
+ ip address 10.0.3.29 255.255.255.0
+ no ip route-cache
+!
+ip default-gateway 10.0.3.1
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+!
+!
+end
+
