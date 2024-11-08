@@ -39,10 +39,10 @@
 ![](ipv6_route_R20.jpg)
 
 Файлы конфигурации маршрутизаторов :  
-  [r12](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r12);
-  [r13](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r13);
-  [r14](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r14);
-  [r15](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r15);
-  [r19](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r19);
-  [r20](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab12/r20);
+  [r12](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r12);
+  [r13](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r13);
+  [r14](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r14);
+  [r15](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r15);
+  [r19](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r19);
+  [r20](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab15/r20);
 
