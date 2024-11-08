@@ -1,0 +1,183 @@
+Building configuration...
+
+Current configuration : 2426 bytes
+!
+! Last configuration change at 20:16:05 UTC Fri Nov 8 2024
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R14
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.22.1.1 255.255.255.255
+!
+interface Ethernet0/0
+ ip address 172.16.2.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A2::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 10
+ ipv6 ospf network point-to-point
+!
+interface Ethernet0/1
+ ip address 172.16.3.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A3::14/64
+ ipv6 enable
+!
+interface Ethernet0/2
+ ip address 192.168.1.1 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:AA::14/64
+ ipv6 enable
+!
+interface Ethernet0/3
+ ip address 172.16.1.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A1::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 101
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/0
+ ip address 10.14.15.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A4::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ duplex auto
+!
+router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ network 10.14.15.0 0.0.0.1 area 0
+ network 10.22.1.1 0.0.0.0 area 0
+ network 172.16.1.0 0.0.0.1 area 101
+ network 172.16.2.0 0.0.0.1 area 10
+ network 172.16.3.0 0.0.0.1 area 10
+ default-information originate
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.1.0
+!
+ipv6 route ::/0 20FF:CCFF:FFFF:AA::22
+ipv6 router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ default-information originate
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end
