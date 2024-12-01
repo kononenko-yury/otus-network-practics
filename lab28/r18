@@ -1,0 +1,170 @@
+Building configuration...
+
+Current configuration : 2243 bytes
+!
+! Last configuration change at 22:27:06 UTC Sat Nov 30 2024
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R18
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.77.1.1 255.255.255.255
+ ipv6 address FE80::18 link-local
+ ipv6 enable
+!
+interface Ethernet0/0
+ ip address 172.18.2.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::18 link-local
+ ipv6 address 20FF:CCFF:FFFF:D4::18/64
+ ipv6 enable
+!
+interface Ethernet0/1
+ ip address 172.18.1.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::18 link-local
+ ipv6 address 20FF:CCFF:FFFF:D1::18/64
+ ipv6 enable
+!
+interface Ethernet0/2
+ ip address 192.168.6.1 255.255.255.254
+ duplex auto
+!
+interface Ethernet0/3
+ ip address 192.168.7.1 255.255.255.254
+ duplex auto
+!
+!
+router eigrp SPB
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  topology base
+   redistribute bgp 2042 metric 100 1 255 1 1500
+  exit-af-topology
+  network 172.18.1.0 0.0.0.1
+  network 172.18.2.0 0.0.0.1
+  eigrp router-id 0.0.0.18
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 1
+  !
+  topology base
+  exit-af-topology
+  eigrp router-id 0.0.0.18
+ exit-address-family
+!
+router bgp 2042
+ bgp router-id 18.18.18.18
+ bgp log-neighbor-changes
+ bgp bestpath as-path multipath-relax
+ network 10.20.1.0 mask 255.255.255.0
+ network 10.20.2.0 mask 255.255.255.0
+ neighbor 192.168.6.0 remote-as 520
+ neighbor 192.168.6.0 prefix-list LOCAL-TRANFER out
+ neighbor 192.168.7.0 remote-as 520
+ neighbor 192.168.7.0 prefix-list LOCAL-TRANFER out
+ maximum-paths 2
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+ip prefix-list LOCAL-TRANFER seq 5 permit 10.20.1.0/24
+ip prefix-list LOCAL-TRANFER seq 10 permit 10.20.2.0/24
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end
+
