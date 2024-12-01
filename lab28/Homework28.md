@@ -21,6 +21,9 @@
 
        neighbor 192.168.5.1 route-map ALLOW-DEFAULT-SPB out
 
+Проверка общей связанности
+![](check_ping.jpg)
+
 Файлы конфигурации маршрутизаторов :  
   [r14](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab28/r14);
   [r15](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab28/r15);
