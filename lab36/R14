@@ -1,0 +1,215 @@
+Building configuration...
+
+Current configuration : 3336 bytes
+!
+! Last configuration change at 21:56:17 UTC Sun Dec 15 2024
+! NVRAM config last updated at 21:46:17 UTC Sun Dec 15 2024
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R14
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.22.1.1 255.255.255.255
+!
+interface Tunnel100
+ description tunnel R14 to R18
+ ip address 172.16.100.1 255.255.255.0
+ ip mtu 1400
+ ip tcp adjust-mss 1360
+ tunnel source 192.168.1.2
+ tunnel destination 192.168.6.6
+!
+interface Ethernet0/0
+ ip address 172.16.1.5 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A2::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 10
+ ipv6 ospf network point-to-point
+!
+interface Ethernet0/1
+ ip address 172.16.1.9 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A3::14/64
+ ipv6 enable
+!
+interface Ethernet0/2
+ ip address 192.168.1.2 255.255.255.252
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:AA::14/64
+ ipv6 enable
+!
+interface Ethernet0/3
+ ip address 172.16.1.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A1::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 101
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/0
+ ip address 10.14.15.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A4::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ duplex auto
+!
+router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ network 10.14.15.0 0.0.0.1 area 0
+ network 10.22.1.1 0.0.0.0 area 0
+ network 172.16.1.0 0.0.0.3 area 101
+ network 172.16.1.4 0.0.0.3 area 10
+ network 172.16.1.8 0.0.0.3 area 10
+ default-information originate
+!
+router bgp 1001
+ bgp router-id 14.14.14.14
+ bgp log-neighbor-changes
+ neighbor 10.14.15.1 remote-as 1001
+ neighbor 192.168.1.1 remote-as 101
+!
+ip forward-protocol nd
+!
+ip as-path access-list 10 permit ^$
+!
+no ip http server
+no ip http secure-server
+ip nat inside source list 111 interface Ethernet0/2 overload
+ip nat inside source static tcp 172.16.1.2 22 192.168.1.2 2222 extendable
+!
+ipv6 route ::/0 20FF:CCFF:FFFF:AA::22
+ipv6 router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ default-information originate
+!
+ipv6 ioam timestamp
+!
+route-map PREP-TO-101 permit 10
+ set as-path prepend 1001 1001 1001
+!
+!
+access-list 1 permit 192.168.1.2
+access-list 1 permit 0.0.0.0 255.255.255.252
+access-list 111 permit ip 172.16.1.0 0.0.0.15 any
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+ntp server 10.22.4.1
+!
+end
