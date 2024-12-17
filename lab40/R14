@@ -1,0 +1,297 @@
+Building configuration...
+
+
+Current configuration : 7736 bytes
+!
+! Last configuration change at 21:36:17 UTC Tue Dec 17 2024
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R14
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip domain name otus.ru
+ip host R22 10.11.0.1
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint R22ca
+ enrollment url http://10.11.0.1:80
+ serial-number
+ revocation-check crl
+!
+!
+crypto pki certificate chain R22ca
+ certificate 02
+  30820307 308201EF A0030201 02020102 300D0609 2A864886 F70D0101 05050030
+  10310E30 0C060355 04031305 52323263 61301E17 0D323431 32313732 30333135
+  335A170D 32353132 31373230 33313533 5A302D31 2B300F06 03550405 13083637
+  31303930 38383018 06092A86 4886F70D 01090216 0B523134 2E6F7475 732E7275
+  30820122 300D0609 2A864886 F70D0101 01050003 82010F00 3082010A 02820101
+  00C3BC43 B8E78014 903F1299 98892AA1 C1927F47 40EEB11D CF14F512 8D608716
+  0F59CB1D AB1FE104 ADF88670 44ACA290 F9447D69 C072FB45 57B92AD0 FD00599B
+  23ED84B7 236E6192 871A936F 7B12B343 9F1DA543 3EA22C51 4C1BBE51 2CCF37DD
+  387A57D8 C29A8BA3 62E53ED2 6B0E1AB7 41418581 A499219C 24792A7B AAD0D6A1
+  80B0CED2 E797CF68 58D9996D F2914B90 F83934BB A3AD5E76 50635CE9 D913F7BE
+  163664C4 0171004B 92617CA5 22C82D68 BFBC41D2 B56A000B CE5A1067 86A68CDD
+  B6EA9EDC 2023B8F3 F0066443 F568B383 9AD79B81 BFD27514 1C1EAA73 70132B8A
+  4BEA8715 2986C9EA 3B2EEF04 A30A1F00 2E54239F 672FDC3D 263AC2C9 A12C0D86
+  51020301 0001A34F 304D300B 0603551D 0F040403 0205A030 1F060355 1D230418
+  30168014 7304976C 8E3F05C3 8E09A9EC 93A7A3BF 9023AE3B 301D0603 551D0E04
+  1604140A D0AA7C01 FEB834A3 51F96027 81BD4078 46174430 0D06092A 864886F7
+  0D010105 05000382 01010015 5E26F644 570217C9 0F5B1827 A056F6EE 9BE22684
+  9F9501CD 7DFFE1B5 07BE42BE 11C55003 6DEC16B8 245E89BD 7F0870DF BCB7D928
+  FB12888D B51B00EB 531542C6 55D0CCFA DC5201CC FDBC7FED 2848CACC F9AD40AC
+  51AF5D28 5A78E177 C35AF151 BAFE08F7 57BA6693 F33196AD D8CE74DF 933A006B
+  F9B238CA 17382733 56CAFDD3 CDE7A292 97CF5C71 AC164E49 79D8170D D1A59D96
+  5DF83356 E340C836 3DDCE1FE 433A40CC 76E26109 D7DE6C7D 3CF3FB78 FC2FAEE3
+  B1917DCD 47782568 971A3BA8 279B944C 89587835 CBA0B116 41C85FC6 C9331149
+  11387918 3DDF1084 F91321F2 7DB3E204 295EF63F 4D144877 290082FE 23179D9B
+  C8129CD9 73D75670 9ACDEB
+        quit
+ certificate ca 01
+  308202FE 308201E6 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  10310E30 0C060355 04031305 52323263 61301E17 0D323431 32313732 30313830
+  305A170D 32373132 31373230 31383030 5A301031 0E300C06 03550403 13055232
+  32636130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02
+  82010100 9AEC2B1E DA518A28 683DFC08 98D37451 6F9D52AE 091CBCF4 8FA5B06E
+  E498371D 30A43B62 2DE43A11 165C9868 F62AB022 364D955E 8FA82C32 FF4322F8
+  E0423475 2A9D2507 B7F2EEA8 60581531 F711ECC6 8FBA1138 42490A1D E1DFAFCC
+  4D0ADA12 DC33B615 A863E723 79321DAE 191A08B9 5BFA993B B7868B22 271C847C
+  FEFFE71C 2B84F594 A64CEB34 252614B8 1D450766 402E77DF 7EEFDB0D 8305D2A3
+  E7E285D7 3AF480BA CE8E1933 B43DE99A 9D5DE704 50699AFF 51D949BE B047F4A7
+  7C9A0B87 30281C32 E7D3000C 3FB653EA 1012A754 4A5FEEC4 143D6E7C 64B2DDAD
+  DBE88158 F79DBF24 C5E813B1 C2E40CA4 15DDE069 894BD687 1A9A5158 6F4274A2
+  0CF65ED5 02030100 01A36330 61300F06 03551D13 0101FF04 05300301 01FF300E
+  0603551D 0F0101FF 04040302 0186301F 0603551D 23041830 16801473 04976C8E
+  3F05C38E 09A9EC93 A7A3BF90 23AE3B30 1D060355 1D0E0416 04147304 976C8E3F
+  05C38E09 A9EC93A7 A3BF9023 AE3B300D 06092A86 4886F70D 01010405 00038201
+  0100934E 500310B4 D2A3925D 38330C83 CDC93ED9 5BB040F1 6A05D445 F97413D5
+  B929DB07 4B9C7EF0 ED7F9215 7F40477D F6FDEAE9 5F019536 A451AC5D 30A72215
+  DFF5E038 CA5F2B91 F0B940F2 6A9353E7 678D7402 17C23A64 ABCF2581 FACB2A05
+  2F8CE4FF E4C07796 AA6395FE 357BB21B CF536A0D 62060E18 AE785816 F6CBB8DD
+  DD052E10 34B7E202 846FF8EA AA3D351B 3BD8BB8E D7A34F7D 6114A5C9 D4C0FCB3
+  D3365A4A 085B3805 3A3AD02D BC4BFA3D 2ADE1910 98785A87 6A1917FA 79CCEA83
+  D37C2F45 54EA2575 AEAB1B9D B0FC5E7F 71A6CFD9 A1F3A032 8BC79ED6 0BA56789
+  E7114113 4024EA96 DF065B23 19229294 08B8AEB8 25887966 E15EFFFE 5868F861 3FAE
+        quit
+!
+redundancy
+!
+!
+!
+!
+crypto ikev2 proposal IKEV2-PROPOS-TUN100
+ encryption aes-cbc-256
+ integrity sha256
+ group 14
+!
+crypto ikev2 policy IKEV2-POLICY-TU100
+ match fvrf any
+ proposal IKEV2-PROPOS-TUN100
+!
+!
+crypto ikev2 profile IKEV2-PROFILE-TUN100
+ match identity remote address 0.0.0.0
+ authentication remote rsa-sig
+ authentication local rsa-sig
+ pki trustpoint R22ca
+!
+!
+!
+crypto ipsec transform-set IPSEC-TU100 esp-aes 256 esp-sha256-hmac
+ mode tunnel
+!
+crypto ipsec profile PROF-IPSEC-TUN100
+ set transform-set IPSEC-TU100
+ set ikev2-profile IKEV2-PROFILE-TUN100
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.22.1.1 255.255.255.255
+!
+interface Tunnel100
+ description tunnel R14 to R18
+ ip address 172.16.100.1 255.255.255.0
+ ip mtu 1400
+ ip tcp adjust-mss 1360
+ tunnel source 192.168.1.2
+ tunnel destination 192.168.6.6
+ tunnel protection ipsec profile PROF-IPSEC-TUN100
+!
+interface Ethernet0/0
+ ip address 172.16.1.5 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A2::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 10
+ ipv6 ospf network point-to-point
+!
+interface Ethernet0/1
+ ip address 172.16.1.9 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A3::14/64
+ ipv6 enable
+!
+interface Ethernet0/2
+ ip address 192.168.1.2 255.255.255.252
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:AA::14/64
+ ipv6 enable
+!
+interface Ethernet0/3
+ ip address 172.16.1.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A1::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 101
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/0
+ ip address 10.14.15.0 255.255.255.254
+ duplex auto
+ ipv6 address FE80::14 link-local
+ ipv6 address 20FF:CCFF:FFFF:A4::14/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ ipv6 ospf network point-to-point
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ duplex auto
+!
+router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ network 10.14.15.0 0.0.0.1 area 0
+ network 10.22.1.1 0.0.0.0 area 0
+ network 172.16.1.0 0.0.0.3 area 101
+ network 172.16.1.4 0.0.0.3 area 10
+ network 172.16.1.8 0.0.0.3 area 10
+ default-information originate
+!
+router bgp 1001
+ bgp router-id 14.14.14.14
+ bgp log-neighbor-changes
+ neighbor 10.14.15.1 remote-as 1001
+ neighbor 192.168.1.1 remote-as 101
+!
+ip forward-protocol nd
+!
+ip as-path access-list 10 permit ^$
+!
+no ip http server
+no ip http secure-server
+ip nat inside source list 111 interface Ethernet0/2 overload
+ip nat inside source static tcp 172.16.1.2 22 192.168.1.2 2222 extendable
+!
+ipv6 route ::/0 20FF:CCFF:FFFF:AA::22
+ipv6 router ospf 1
+ router-id 0.0.0.14
+ area 101 stub no-summary
+ default-information originate
+!
+ipv6 ioam timestamp
+!
+route-map PREP-TO-101 permit 10
+ set as-path prepend 1001 1001 1001
+!
+!
+access-list 1 permit 192.168.1.2
+access-list 1 permit 0.0.0.0 255.255.255.252
+access-list 111 permit ip 172.16.1.0 0.0.0.15 any
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+ntp server 10.22.4.1
+!
+end

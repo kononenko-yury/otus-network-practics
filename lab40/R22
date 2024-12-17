@@ -1,0 +1,203 @@
+Building configuration...
+
+
+Current configuration : 3927 bytes
+!
+! Last configuration change at 20:36:55 UTC Tue Dec 17 2024
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R22
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip domain name otus.ru
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki server R22ca
+ database level complete
+ database archive pem
+ grant auto
+!
+crypto pki trustpoint R22ca
+ enrollment url http://R22ca:80
+ revocation-check none
+ rsakeypair R22ca
+!
+!
+crypto pki certificate chain R22ca
+ certificate ca 01
+  308202FE 308201E6 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  10310E30 0C060355 04031305 52323263 61301E17 0D323431 32313732 30313830
+  305A170D 32373132 31373230 31383030 5A301031 0E300C06 03550403 13055232
+  32636130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02
+  82010100 9AEC2B1E DA518A28 683DFC08 98D37451 6F9D52AE 091CBCF4 8FA5B06E
+  E498371D 30A43B62 2DE43A11 165C9868 F62AB022 364D955E 8FA82C32 FF4322F8
+  E0423475 2A9D2507 B7F2EEA8 60581531 F711ECC6 8FBA1138 42490A1D E1DFAFCC
+  4D0ADA12 DC33B615 A863E723 79321DAE 191A08B9 5BFA993B B7868B22 271C847C
+  FEFFE71C 2B84F594 A64CEB34 252614B8 1D450766 402E77DF 7EEFDB0D 8305D2A3
+  E7E285D7 3AF480BA CE8E1933 B43DE99A 9D5DE704 50699AFF 51D949BE B047F4A7
+  7C9A0B87 30281C32 E7D3000C 3FB653EA 1012A754 4A5FEEC4 143D6E7C 64B2DDAD
+  DBE88158 F79DBF24 C5E813B1 C2E40CA4 15DDE069 894BD687 1A9A5158 6F4274A2
+  0CF65ED5 02030100 01A36330 61300F06 03551D13 0101FF04 05300301 01FF300E
+  0603551D 0F0101FF 04040302 0186301F 0603551D 23041830 16801473 04976C8E
+  3F05C38E 09A9EC93 A7A3BF90 23AE3B30 1D060355 1D0E0416 04147304 976C8E3F
+  05C38E09 A9EC93A7 A3BF9023 AE3B300D 06092A86 4886F70D 01010405 00038201
+  0100934E 500310B4 D2A3925D 38330C83 CDC93ED9 5BB040F1 6A05D445 F97413D5
+  B929DB07 4B9C7EF0 ED7F9215 7F40477D F6FDEAE9 5F019536 A451AC5D 30A72215
+  DFF5E038 CA5F2B91 F0B940F2 6A9353E7 678D7402 17C23A64 ABCF2581 FACB2A05
+  2F8CE4FF E4C07796 AA6395FE 357BB21B CF536A0D 62060E18 AE785816 F6CBB8DD
+  DD052E10 34B7E202 846FF8EA AA3D351B 3BD8BB8E D7A34F7D 6114A5C9 D4C0FCB3
+  D3365A4A 085B3805 3A3AD02D BC4BFA3D 2ADE1910 98785A87 6A1917FA 79CCEA83
+  D37C2F45 54EA2575 AEAB1B9D B0FC5E7F 71A6CFD9 A1F3A032 8BC79ED6 0BA56789
+  E7114113 4024EA96 DF065B23 19229294 08B8AEB8 25887966 E15EFFFE 5868F861 3FAE
+        quit
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.11.0.1 255.255.255.255
+!
+interface Ethernet0/0
+ ip address 192.168.1.1 255.255.255.252
+ duplex auto
+ ipv6 address FE80::22 link-local
+ ipv6 address 20FF:CCFF:FFFF:AA::22/64
+ ipv6 enable
+!
+interface Ethernet0/1
+ ip address 192.168.2.0 255.255.255.254
+ duplex auto
+!
+interface Ethernet0/2
+ ip address 192.168.3.0 255.255.255.254
+ duplex auto
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/0
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ duplex auto
+!
+router bgp 101
+ bgp router-id 22.22.22.22
+ bgp log-neighbor-changes
+ network 10.11.0.1 mask 255.255.255.255
+ network 192.168.1.0 mask 255.255.255.252
+ neighbor 192.168.1.2 remote-as 1001
+ neighbor 192.168.1.2 default-originate
+ neighbor 192.168.1.2 prefix-list ONLY-DEFAULT out
+ neighbor 192.168.2.1 remote-as 301
+ neighbor 192.168.3.1 remote-as 520
+!
+ip forward-protocol nd
+!
+!
+ip http server
+no ip http secure-server
+!
+!
+ip prefix-list ONLY-DEFAULT seq 5 permit 0.0.0.0/0
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end
+
