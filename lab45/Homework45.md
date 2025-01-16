@@ -79,9 +79,11 @@
 Работа по технологии DMVPN (3 фаза) 
 ![](DMVPN_stage3.jpg)
 
-Разделение траффика интернет (на IPS1 обьявлен lo1 8.8.8.8)  и VPN
+Разделение трафика на интернет (на IPS1 обьявлен lo1 8.8.8.8) и VPN
 ![](Access_Inet_and_VPN.jpg)
 
+Вывод команды show crypto ipsec sa
+![](IPsec.jpg)
 
 Файлы конфигурации сетевых устройств:  
   [SW-Acc1](https://github.com/kononenko-yury/otus-network-practics/blob/main/lab45/SW-Acc1);
