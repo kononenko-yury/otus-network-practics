@@ -1,0 +1,256 @@
+Building configuration...
+
+Current configuration : 6900 bytes
+!
+version 15.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname B1-CE
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip domain name educ.labs
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-PKI
+ enrollment url http://10.100.40.1:80
+ serial-number
+ fqdn B1-CE.educ.labs
+ subject-name cn=B1-CE,ou=DMVPN,o=OTUS,c=RU
+ revocation-check none
+ rsakeypair B1CE-KEYS
+!
+!
+!
+crypto pki certificate map CERT-MAP 1
+ subject-name co ou = dmvpn
+ issuer-name co o = otus
+!
+crypto pki certificate chain TP-PKI
+ certificate 04
+  308202EF 30820258 A0030201 02020104 300D0609 2A864886 F70D0101 0D050030
+  39310B30 09060355 04061302 5255310D 300B0603 55040A13 044F5455 53310E30
+  0C060355 040B1305 444D5650 4E310B30 09060355 04031302 4353301E 170D3235
+  30313134 31363133 34355A17 0D323630 31303931 36313334 355A306D 310B3009
+  06035504 06130252 55310D30 0B060355 040A1304 4F545553 310E300C 06035504
+  0B130544 4D56504E 310E300C 06035504 03130542 312D4345 312F300F 06035504
+  05130836 37313038 38393630 1C06092A 864886F7 0D010902 160F4231 2D43452E
+  65647563 2E6C6162 73308201 22300D06 092A8648 86F70D01 01010500 0382010F
+  00308201 0A028201 0100A670 4B5F39E3 169E739A 39F1CC82 40B7AB32 A6BB1C25
+  BD137433 D0369479 E6140EE9 67392D4F FAA1BFEC E24974E0 18AFFF36 333614DC
+  D5F11CDF D00DFE50 0A7F7553 C5CCBBFA A4124520 E22FFCAE 84AE2A0F 884834AD
+  60ED88B0 33E6CBE8 A06A6038 46A5E9F3 9285CE47 6D5B31F1 D39C5D8F 051CE794
+  ACC25DE2 F46C76EE 372EAE53 85BE5525 474EBA06 E0C5455F E4430B37 C731AF10
+  E3C877BC B2EFE04D 46DEFD51 C66326EA 5297D03B B9E2A39E C72FD265 CFDBF088
+  D974B474 6933A0AA FDC8A6B5 048E6D51 63F67EF6 3A8D407D CD3777B5 372A1CA0
+  D3D11C94 4B2FD014 52A3DA23 73D2A9F3 2AB3ADB5 6CF0482B 2927537D A039DBCD
+  CDC6B58A FCCDDE26 370D0203 010001A3 4F304D30 0B060355 1D0F0404 030205A0
+  301F0603 551D2304 18301680 146E4356 F23DFDD9 D93F24AF EC20D414 C21F8634
+  5B301D06 03551D0E 04160414 982B723E E6ED4B94 22D5121B 30710406 E4FEBA1B
+  300D0609 2A864886 F70D0101 0D050003 81810002 C70D1559 30F6B409 063E8AC4
+  3EAEA131 17EBA81C 4212BA6B 6D3C5F04 B293570B C349402E F3C6823F 5C72E630
+  A7192BF7 F65F6A40 15EFE65F B8C07B52 F578ED66 B2195553 3E895A7F 112E7D29
+  360C6AB7 45BB5047 7B704282 8479A286 9A700566 88198BC9 61144C39 77E9F4DF
+  2F43A386 DE4F8AF4 19233BC3 EEADA803 571994
+        quit
+ certificate ca 01
+  3082024B 308201B4 A0030201 02020101 300D0609 2A864886 F70D0101 0D050030
+  39310B30 09060355 04061302 5255310D 300B0603 55040A13 044F5455 53310E30
+  0C060355 040B1305 444D5650 4E310B30 09060355 04031302 4353301E 170D3235
+  30313133 32303133 30365A17 0D323730 31303332 30313330 365A3039 310B3009
+  06035504 06130252 55310D30 0B060355 040A1304 4F545553 310E300C 06035504
+  0B130544 4D56504E 310B3009 06035504 03130243 5330819F 300D0609 2A864886
+  F70D0101 01050003 818D0030 81890281 8100B0F1 0781DB76 8A59D13E 90BE0562
+  FB2AF191 33C56E61 FEC63568 6875A56D FE7D2179 1DF5588D 7DD8205F 3065857A
+  4FC4DE21 A9180D27 759D9B8C 551A2290 CF52D5CA F56526F1 8A37922B 214C42BB
+  E7796DB2 85D9DFEE 97D490F7 0A72EBD8 615882AD A3D2D21F 8542714F 3FA5BD28
+  C4EFE7C6 250903F6 8D6DEB2C 0D8415FF C1910203 010001A3 63306130 0F060355
+  1D130101 FF040530 030101FF 300E0603 551D0F01 01FF0404 03020186 301F0603
+  551D2304 18301680 146E4356 F23DFDD9 D93F24AF EC20D414 C21F8634 5B301D06
+  03551D0E 04160414 6E4356F2 3DFDD9D9 3F24AFEC 20D414C2 1F86345B 300D0609
+  2A864886 F70D0101 0D050003 81810091 6BEE4016 FE45B27F 7542A3BB D8403DA8
+  741AFD2F FE1CF572 FA422E5D 055A8578 3B8D4053 76343D69 ADB6BCF3 523F289F
+  26B0A267 45021835 B0A94B0E 14E18033 0B9FF0F2 0B03716C 57C19D45 7697B1D9
+  51BCF46A 9B0FB07C 9C8AC62A 8EFB8F0B FD63D7CB 36EE00A1 30285013 D870EA24
+  84993E1F CBB04797 8BEBE9B0 65A866
+        quit
+!
+redundancy
+!
+!
+track 1 ip sla 1 reachability
+!
+!
+!
+crypto ikev2 proposal IKEV2-PROPOSAL
+ encryption aes-cbc-256
+ integrity sha256
+ group 14
+!
+crypto ikev2 policy IKEV2-POLICY
+ match fvrf any
+ proposal IKEV2-PROPOSAL
+!
+!
+crypto ikev2 profile IKEV2-PROFILE
+ match certificate CERT-MAP
+ identity local dn
+ authentication remote rsa-sig
+ authentication local rsa-sig
+ pki trustpoint TP-PKI
+ dpd 10 5 periodic
+!
+!
+!
+crypto ipsec transform-set IPSEC-TRANSFORM esp-aes esp-sha-hmac
+ mode tunnel
+!
+crypto ipsec profile IPSEC-PROFILE
+ set transform-set IPSEC-TRANSFORM
+ set ikev2-profile IKEV2-PROFILE
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.101.0.1 255.255.0.0
+!
+interface Loopback1
+ ip address 172.17.0.1 255.255.0.0
+!
+interface Tunnel100
+ ip address 192.168.0.3 255.255.255.0
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication nhrppass
+ ip nhrp map 192.168.0.1 172.248.237.202
+ ip nhrp network-id 100
+ ip nhrp nhs 192.168.0.1
+ ip nhrp registration no-unique
+ ip nhrp registration timeout 5
+ ip nhrp shortcut
+ ip tcp adjust-mss 1360
+ tunnel source Ethernet0/0
+ tunnel mode gre multipoint
+ tunnel key 100
+ tunnel protection ipsec profile IPSEC-PROFILE
+!
+interface Tunnel200
+ ip address 192.168.2.3 255.255.255.0
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication nhrppass
+ ip nhrp map 192.168.2.1 172.248.237.198
+ ip nhrp network-id 200
+ ip nhrp nhs 192.168.2.1
+ ip nhrp registration no-unique
+ ip nhrp registration timeout 5
+ ip nhrp shortcut
+ ip tcp adjust-mss 1360
+ tunnel source Ethernet0/1
+ tunnel mode gre multipoint
+ tunnel key 200
+ tunnel protection ipsec profile IPSEC-PROFILE
+!
+interface Ethernet0/0
+ ip address 172.100.200.162 255.255.255.252
+!
+interface Ethernet0/1
+ ip address 46.249.16.138 255.255.255.252
+!
+interface Ethernet0/2
+ ip address 10.1.1.1 255.255.255.252
+!
+interface Ethernet0/3
+ ip address 10.1.1.5 255.255.255.252
+!
+router ospf 1
+ router-id 1.1.1.1
+ network 10.1.1.0 0.0.0.255 area 0
+ network 10.101.1.1 0.0.0.0 area 0
+ default-information originate always
+!
+router bgp 64520
+ bgp log-neighbor-changes
+ network 10.101.0.0 mask 255.255.0.0
+ network 172.17.0.0
+ timers bgp 10 30
+ redistribute ospf 1 route-map REDISTRIB_OSPF2BGP
+ neighbor 192.168.0.1 remote-as 64000
+ neighbor 192.168.0.1 allowas-in
+ neighbor 192.168.2.1 remote-as 64000
+ neighbor 192.168.2.1 allowas-in
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 46.249.16.137 track 1
+ip route 172.248.237.198 255.255.255.255 46.249.16.137 track 1
+ip route 172.248.237.202 255.255.255.255 46.249.16.137 track 1
+ip route 0.0.0.0 0.0.0.0 172.100.200.161
+ip route 172.248.237.198 255.255.255.255 172.100.200.161
+ip route 172.248.237.202 255.255.255.255 172.100.200.161
+!
+ip sla 1
+ icmp-echo 8.8.8.8 source-interface Ethernet0/0
+ip sla schedule 1 life forever start-time now
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end

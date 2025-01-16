@@ -1,0 +1,154 @@
+Building configuration...
+
+Current configuration : 2860 bytes
+!
+version 15.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname CA
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+crypto pki server CA-SRV
+ database level names
+ no database archive
+ issuer-name CN=CS,OU=DMVPN,O=OTUS,C=RU
+ grant auto
+ hash sha512
+ lifetime certificate 360
+ lifetime ca-certificate 720
+ database url nvram:/certbase
+!
+crypto pki trustpoint CA-TP-PKI
+ revocation-check crl
+ rsakeypair CA-KEY
+!
+crypto pki trustpoint CA-SRV
+ revocation-check crl
+ rsakeypair CA-SRV
+!
+!
+crypto pki certificate chain CA-TP-PKI
+crypto pki certificate chain CA-SRV
+ certificate ca 01
+  3082024B 308201B4 A0030201 02020101 300D0609 2A864886 F70D0101 0D050030
+  39310B30 09060355 04061302 5255310D 300B0603 55040A13 044F5455 53310E30
+  0C060355 040B1305 444D5650 4E310B30 09060355 04031302 4353301E 170D3235
+  30313133 32303133 30365A17 0D323730 31303332 30313330 365A3039 310B3009
+  06035504 06130252 55310D30 0B060355 040A1304 4F545553 310E300C 06035504
+  0B130544 4D56504E 310B3009 06035504 03130243 5330819F 300D0609 2A864886
+  F70D0101 01050003 818D0030 81890281 8100B0F1 0781DB76 8A59D13E 90BE0562
+  FB2AF191 33C56E61 FEC63568 6875A56D FE7D2179 1DF5588D 7DD8205F 3065857A
+  4FC4DE21 A9180D27 759D9B8C 551A2290 CF52D5CA F56526F1 8A37922B 214C42BB
+  E7796DB2 85D9DFEE 97D490F7 0A72EBD8 615882AD A3D2D21F 8542714F 3FA5BD28
+  C4EFE7C6 250903F6 8D6DEB2C 0D8415FF C1910203 010001A3 63306130 0F060355
+  1D130101 FF040530 030101FF 300E0603 551D0F01 01FF0404 03020186 301F0603
+  551D2304 18301680 146E4356 F23DFDD9 D93F24AF EC20D414 C21F8634 5B301D06
+  03551D0E 04160414 6E4356F2 3DFDD9D9 3F24AFEC 20D414C2 1F86345B 300D0609
+  2A864886 F70D0101 0D050003 81810091 6BEE4016 FE45B27F 7542A3BB D8403DA8
+  741AFD2F FE1CF572 FA422E5D 055A8578 3B8D4053 76343D69 ADB6BCF3 523F289F
+  26B0A267 45021835 B0A94B0E 14E18033 0B9FF0F2 0B03716C 57C19D45 7697B1D9
+  51BCF46A 9B0FB07C 9C8AC62A 8EFB8F0B FD63D7CB 36EE00A1 30285013 D870EA24
+  84993E1F CBB04797 8BEBE9B0 65A866
+        quit
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.100.40.1 255.255.255.255
+!
+interface Ethernet0/0
+ ip address 10.0.3.2 255.255.255.252
+!
+interface Ethernet0/1
+ ip address 10.0.3.6 255.255.255.252
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 5.5.5.5
+ network 10.0.0.0 0.0.255.255 area 0
+ network 10.100.40.1 0.0.0.0 area 0
+!
+ip forward-protocol nd
+!
+!
+ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end

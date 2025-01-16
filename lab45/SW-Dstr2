@@ -1,0 +1,192 @@
+Building configuration...
+
+Current configuration : 2642 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-Dstr2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+ip cef
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree vlan 2 priority 16384
+spanning-tree vlan 3 priority 16384
+spanning-tree vlan 4 priority 8192
+spanning-tree vlan 5 priority 8192
+spanning-tree vlan 70 priority 16384
+archive
+ log config
+  hidekeys
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.100.12.1 255.255.255.255
+!
+interface Port-channel1
+ switchport mode trunk
+!
+interface FastEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+!
+i
+!
+interface FastEthernet1/2
+ switchport mode trunk
+!
+interface FastEthernet1/3
+ switchport mode trunk
+!
+interface FastEthernet1/4
+ switchport mode trunk
+!
+interface FastEthernet1/5
+ no switchport
+ ip address 10.0.1.10 255.255.255.252
+!
+interface FastEthernet1/6
+ no switchport
+ ip address 10.0.1.14 255.255.255.252
+!
+interface FastEthernet1/7
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface FastEthernet1/8
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface FastEthernet1/9
+!
+interface FastEthernet1/10
+!
+interface FastEthernet1/11
+!
+interface FastEthernet1/12
+!
+interface FastEthernet1/13
+!
+interface FastEthernet1/14
+!
+interface FastEthernet1/15
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan2
+ ip address 172.16.2.2 255.255.255.0
+ standby 2 ip 172.16.2.3
+!
+interface Vlan3
+ ip address 172.16.3.2 255.255.255.0
+ standby 3 ip 172.16.3.3
+!
+interface Vlan4
+ ip address 172.16.4.2 255.255.255.0
+ standby 4 ip 172.16.4.3
+ standby 4 priority 110
+ standby 4 preempt
+!
+interface Vlan5
+ ip address 172.16.5.2 255.255.255.0
+ standby 5 ip 172.16.5.3
+ standby 5 priority 110
+ standby 5 preempt
+!
+interface Vlan70
+ ip address 10.100.21.2 255.255.255.0
+ standby 70 ip 10.100.21.3
+!
+router ospf 1
+ router-id 4.4.4.4
+ log-adjacency-changes
+ network 10.0.0.0 0.0.255.255 area 0
+ network 10.100.11.1 0.0.0.0 area 0
+ network 10.100.21.0 0.0.0.255 area 0
+ network 172.16.0.0 0.0.31.255 area 0
+!
+ip forward-protocol nd
+!
+!
+ip http server
+no ip http secure-server
+!
+mac-address-table static 0000.0c07.ac04 interface FastEthernet1/8 vlan 4
+mac-address-table static 0000.0c07.ac05 interface FastEthernet1/8 vlan 5
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+
