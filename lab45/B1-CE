@@ -224,11 +224,7 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 ip route 0.0.0.0 0.0.0.0 46.249.16.137 track 1
-ip route 172.248.237.198 255.255.255.255 46.249.16.137 track 1
-ip route 172.248.237.202 255.255.255.255 46.249.16.137 track 1
-ip route 0.0.0.0 0.0.0.0 172.100.200.161
-ip route 172.248.237.198 255.255.255.255 172.100.200.161
-ip route 172.248.237.202 255.255.255.255 172.100.200.161
+ip route 0.0.0.0 0.0.0.0 172.100.200.161 50
 !
 ip sla 1
  icmp-echo 8.8.8.8 source-interface Ethernet0/0
