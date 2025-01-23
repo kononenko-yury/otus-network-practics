@@ -232,8 +232,6 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 ip route 0.0.0.0 0.0.0.0 172.160.237.201
-ip route 172.248.237.198 255.255.255.255 172.160.237.201
-ip route 172.248.237.202 255.255.255.255 172.160.237.201
 !
 ipv6 ioam timestamp
 !
