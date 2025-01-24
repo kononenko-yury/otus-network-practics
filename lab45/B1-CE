@@ -152,9 +152,6 @@ crypto ipsec profile IPSEC-PROFILE
 interface Loopback0
  ip address 10.101.0.1 255.255.0.0
 !
-interface Loopback1
- ip address 172.17.0.1 255.255.0.0
-!
 interface Tunnel100
  ip address 192.168.0.3 255.255.255.0
  no ip redirects
@@ -210,7 +207,7 @@ router ospf 1
 router bgp 64520
  bgp log-neighbor-changes
  network 10.101.0.0 mask 255.255.0.0
- network 172.17.0.0
+ network 172.17.0.0 
  timers bgp 10 30
  redistribute ospf 1 route-map REDISTRIB_OSPF2BGP
  neighbor 192.168.0.1 remote-as 64000
@@ -225,6 +222,7 @@ no ip http server
 no ip http secure-server
 ip route 0.0.0.0 0.0.0.0 46.249.16.137 track 1
 ip route 0.0.0.0 0.0.0.0 172.100.200.161 50
+ip route 172.17.0.0 255.255.0.0 Null0
 !
 ip sla 1
  icmp-echo 8.8.8.8 source-interface Ethernet0/0
