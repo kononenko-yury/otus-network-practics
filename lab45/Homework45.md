@@ -48,7 +48,28 @@
 
 Для организации подключения HQ к филиалам и выхода в интернет установлены 2 граничащих маршрутизатора (R-CE1 и R-CE2), которые имеют подключение к 2
 независимым интернет-сервис провайдерам (ISP1 и ISP2). HQ подключается к ISP по протоколу eBGP. Для маршрутизации внутренних сетей используется OSPF 
-протокол, где в качестве DR и BDR выбраны маршрутизаторы SW-Core1 и SW-Core. 
+протокол, где в качестве DR выбраны маршрутизаторы SW-Core1 (router-id 9.9.9.9) и SW-Core2(router-id 8.8.8.8), путем назначениия более высоких значений router-id. 
+
+     SW-Core1#sh ip ospf neighbor
+
+     Neighbor ID     Pri   State           Dead Time   Address         Interface
+     8.8.8.8           1   FULL/BDR        00:00:37    10.0.2.18       Ethernet1/2
+     4.4.4.4           1   FULL/BDR        00:00:35    10.0.1.10       Ethernet1/1
+     3.3.3.3           1   FULL/BDR        00:00:32    10.0.1.2        Ethernet1/0
+     6.6.6.6           1   FULL/BDR        00:00:34    10.0.2.6        Ethernet0/3
+     7.7.7.7           1   FULL/BDR        00:00:39    10.0.2.2        Ethernet0/2
+
+     SW-Core2#sh ip ospf neighbor
+
+     Neighbor ID     Pri   State           Dead Time   Address         Interface
+     9.9.9.9           1   FULL/DR         00:00:39    10.0.2.17       Ethernet1/2
+     3.3.3.3           1   FULL/BDR        00:00:31    10.0.1.6        Ethernet1/1
+     4.4.4.4           1   FULL/BDR        00:00:34    10.0.1.14       Ethernet1/0
+     7.7.7.7           1   FULL/BDR        00:00:37    10.0.2.22       Ethernet0/3
+     6.6.6.6           1   FULL/BDR        00:00:33    10.0.2.26       Ethernet0/2
+     2.2.2.2           1   FULL/BDR        00:00:36    10.0.2.30       Ethernet0/1
+     1.1.1.1           1   FULL/BDR        00:00:32    10.0.2.34       Ethernet0/0
+
 
 Филиалы подключаются к HQ через  ISP с использованием статической маршрутизации и адресов, предоставленных ISP. 
 	 
