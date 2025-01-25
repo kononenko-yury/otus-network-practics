@@ -208,8 +208,7 @@ router bgp 64520
  bgp log-neighbor-changes
  network 10.101.0.0 mask 255.255.0.0
  network 172.17.0.0 
- timers bgp 10 30
- redistribute ospf 1 route-map REDISTRIB_OSPF2BGP
+ timers bgp 10 30 
  neighbor 192.168.0.1 remote-as 64000
  neighbor 192.168.0.1 allowas-in
  neighbor 192.168.2.1 remote-as 64000
