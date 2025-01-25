@@ -192,6 +192,7 @@ router ospf 1
 router bgp 64000
  bgp log-neighbor-changes
  network 10.100.40.1 mask 255.255.255.255
+ network 172.16.0.0 mask 255.255.0.0
  aggregate-address 172.16.0.0 255.240.0.0 summary-only
  timers bgp 10 30 
  neighbor 172.248.237.197 remote-as 30
@@ -213,6 +214,7 @@ ip as-path access-list 10 permit .*
 no ip http server
 no ip http secure-server
 ip nat inside source list 102 interface Ethernet0/0 overload
+ip route 172.16.0.0 255.240.0.0 Null0
 !
 !
 ip prefix-list PL-ANN-DEF-ROUTE seq 5 permit 0.0.0.0/0
